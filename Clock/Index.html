@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .clock{
+            height: 100px;
+            width: 20%;
+            background-color: orange;
+            border-radius: 20px;
+            border:black , solid , 2px ;
+            text-align: center;
+            justify-content: center;
+            margin: auto;
+        }
+        .times{
+
+            font-size: large;
+            font-weight: bold;
+        }
+    </style>
+    
+</head>
+
+<body>
+      <div class="clock">
+        <span class="times"></span>
+
+      </div>
+</body>
+<script>
+   const clock= document.querySelector('.times')
+   setInterval(function(){
+    let date=new Date()
+    clock.innerHTML=date.toLocaleTimeString()
+   },1000)
+</script>
+</html>

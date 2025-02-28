@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .canvas {
+            margin-top: 10%;
+            text-align: center;
+        }
+
+        .button {
+            width: 100px;
+            height: 100px;
+            border: solid black 2px;
+            display: inline-block;
+        }
+
+        #grey {
+            background-color: grey;
+        }
+
+        #yellow {
+            background-color: yellow;
+        }
+
+        #blue {
+            background-color: blue
+        }
+
+        #black {
+            background-color: black
+        }
+    </style>
+</head>
+
+<body>
+    <div class="canvas">
+        <h1>bg changer projectt</h1>
+        <span class="button" id="grey"></span>
+        <span class="button" id="yellow"></span>
+        <span class="button" id="blue"></span>
+        <span class="button" id="black"></span>
+    </div>
+</body>
+<script>
+    const buttons = document.querySelectorAll('.button')
+    const body = document.querySelector('body')
+    
+    buttons.forEach((button)=>{
+        button.addEventListener('click' , function(e){
+          console.log(e.target);
+          if(e.target.id==='grey'){
+            alert("are you sure for change color!");
+            body.style.backgroundColor='grey'           
+          }
+          if(e.target.id==='yellow'){
+            body.style.backgroundColor='yellow'
+          }
+          if(e.target.id==='blue'){
+            body.style.backgroundColor='blue'
+          }
+          if(e.target.id==='black'){
+            body.style.backgroundColor='black'
+          }
+          
+        })
+    })
+    
+     
+
+
+
+</script>
+
+</html>

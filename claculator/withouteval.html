@@ -1,0 +1,44 @@
+function calculate() {
+    const expression = display.textContent;
+    const operators = ['+', '-', '*', '/'];
+    let operator = null;
+
+    // Find the operator in the expression
+    for (let op of operators) {
+        if (expression.includes(op)) {
+            operator = op;
+            break;
+        }
+    }
+
+    If no operator is found, do nothing
+    if (!operator) return;
+
+     Split the expression into two numbers
+    const [left, right] = expression.split(operator).map(Number);
+
+    if (isNaN(left) || isNaN(right)) {
+        display.textContent = 'Error';
+        return;
+    }
+
+    // Perform the calculation
+    let result;
+    switch (operator) {
+        case '+':
+            result = left + right;
+            break;
+        case '-':
+            result = left - right;
+            break;
+        case '*':
+            result = left * right;
+            break;
+        case '/':
+            result = right !== 0 ? left / right : 'Error'; // Handle division by zero
+            break;
+    }
+
+Display the result
+    display.textContent = result;
+}
