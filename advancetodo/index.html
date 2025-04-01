@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      .todoinput{
+        width: 50%;
+        height: 50px;
+        border: white , solid , 2px;
+      }
+      .addtask{
+        background-color: green;
+        color: white;
+      }
+      li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 10px;
+      margin-bottom: 5px;
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      color: black;
+      }
+      .deletee{
+       background-color: red;
+      }
+    </style>
+</head>
+<body style="background-color: #212121;">
+    <div style="text-align: center;">
+    <h1 style="color:blue">ADVANCE TODO</h1>
+    <input
+     class="todoinput"
+     type="text"
+     placeholder="enter your todo"
+
+    />
+    <ul class="unlist"></ul>
+    <button class="addtask">add your task</button>
+</div>
+</body>
+<script>
+    console.log("kush");
+    const inputtext=document.querySelector('.todoinput')
+    const listem=document.querySelector('.unlist')
+    const addbutton=document.querySelector('.addtask')
+
+    addbutton.addEventListener('click' , ()=>{
+        const inputvalue=inputtext.value.trim()
+
+        if(inputvalue === ""){
+            alert('write somthing on todo')
+        }
+
+       else{
+        const listitem=document.createElement('li')
+        listitem.textContent=inputvalue
+        console.log(listitem);
+
+        listem.appendChild(listitem)
+
+        const deletebutton=document.createElement('button')
+        deletebutton.textContent='delete'
+        deletebutton.className='deletee'
+
+        deletebutton.addEventListener('click' , ()=>{
+            listem.removeChild(listitem)
+        
+
+        })
+        listitem.appendChild(deletebutton)
+        
+            inputtext.value=" "
+    
+       }
+       
+    })
+</script>
+</html>
