@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Simple E-commerce</title>
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  background-color: #0a0a0a;
+  color: white;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #1a1a1a;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+h1, h2 {
+  margin-bottom: 20px;
+}
+
+#product-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+/* Placeholder product styling (if you want to add later) */
+.product-item {
+  background-color: #2a2a2a;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+/* Cart Items */
+#cart-items {
+  background-color: #2a2a2a;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+
+#empty-cart {
+  text-align: center;
+  color: #aaa;
+}
+.product {
+    background-color: #1e1e1e;
+    border: 1px solid #333;
+    padding: 15px;
+    border-radius: 8px;
+    width: 220px;
+    margin: 10px;
+    text-align: center;
+    display: inline-block;
+    vertical-align: top;
+  }
+
+/* Cart Total */
+#cart-total {
+  background-color: #2a2a2a;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: right;
+  font-size: 18px;
+}
+
+/* Hidden class */
+.hidden {
+  display: none;
+}
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>Products</h1>
+    <div id="product-list">
+      <!-- Products will be dynamically added here by JavaScript -->
+    </div>
+
+    <h2>Shopping Cart</h2>
+    <div id="cart-items">
+      <p id="empty-cart">Your cart is empty.</p>
+    </div>
+
+    <div id="cart-total" class="hidden">
+      <p>Total: <span id="total-price">$0.00</span></p>
+      <button style="background-color: white;" id="checkut button">check out button</button>
+    </div>
+  </div>
+</body>
+<script>
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const products=[
+      { id:1 , name:"product1" , price: 433.99 },
+      {  id:2 , name:"products 2" , price:599.99},
+       {    id:3 , name:"product 3" , price:578.99}
+    ]
+  const cart=[]
+  const productlist=document.getElementById("product-list")
+  const cartitems= document.getElementById("cart-items")
+  const   emptycart=document.getElementById("empty-cart")
+  const carttoatal=document.getElementById("cart-total")
+  const  totalprice =document.getElementById("total-price")
+  const chekoutbutton=document.getElementById("checkut button")
+  
+   products.forEach(product=>{
+    const productdiv= document.createElement('div')
+    productdiv.classList.add('product')
+    productdiv.innerHTML=`<span>${product.name}-$${product.price.toFixed(2)}</span>
+     <button data-id ="${product.id}">Add to cart</button>;
+
+    `
+    productlist.appendChild(productdiv)
+    
+   })
+   productlist.addEventListener('click',(e)=>{
+    if(e.target.tagName==="BUTTON"){
+         const productid=parseInt(e.target.getAttribute("data-id"));
+         const product= products.find(p=>p.id===productid) 
+         addtocart(product);
+    }
+   })
+
+    function addtocart(product){
+      cart.push(product)
+      rendercart(cart);
+   }
+    
+   function rendercart(){
+    cartitems.innerText=""
+    let allprice=0
+
+    if(cart.length>0){
+      emptycart.classList.add("hidden")
+      carttoatal.classList.remove("hidden")
+      cart.forEach((item , index)=>{
+        allprice+=item.price
+        const cartitem=document.createElement('div')
+        cartitem.innerHTML=`${item.name}-$${item.price.toFixed(2)}`
+        cartitems.appendChild(cartitem) 
+        totalprice.innerText=`${allprice.toFixed(2)}`
+      })
+    }
+    else{
+      totalprice.textContent=`${"0,000"}`
+    }
+    chekoutbutton.addEventListener("click",()=>{
+      cart.length=0
+      alert("chekckout successfully")
+      rendercart()
+    })
+    
+   
+
+
+
+   }
+
+
+
+
+
+})
+
+
+
+
+
+
+
+
+</script>
+</html>
